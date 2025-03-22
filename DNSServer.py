@@ -47,7 +47,7 @@ def decrypt_with_aes(encrypted_data, password, salt):
     return decrypted_data.decode('utf-8')
 
 
-salt = b'Tandon'  # Remember it should be a byte-object
+salt = bytes("Tandon", "utf-8")  # Remember it should be a byte-object
 password = 'as14927@nyu.edu'
 input_string = 'AlwaysWatching'
 
@@ -92,7 +92,7 @@ dns_records = {
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.MX: [(10, 'mxa-00256a01.gslb.pphosted.com.')],  # List of (preference, mail server) tuples
         dns.rdatatype.NS: 'ns1.nyu.edu.',
-        dns.rdatatype.TXT: (encrypted_value.decode('latin-1'),),
+        dns.rdatatype.TXT: (encrypted_value.decode('utf-8'),),
         dns.rdatatype.SOA: (
             'ns1.nyu.edu.',  # mname
             'admin.nyu.edu.',  # rname
@@ -179,5 +179,5 @@ def run_dns_server_user():
 
 if __name__ == '__main__':
     run_dns_server_user()
-    # print("Encrypted Value:", encrypted_value)
-    # print("Decrypted Value:", decrypted_value)
+    print("Encrypted Value:", encrypted_value)
+    print("Decrypted Value:", decrypted_value)
